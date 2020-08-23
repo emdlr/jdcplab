@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JDCP Data Search</title>
+</head>
+<body>
+    <p class="h1">RESULTS BY <%=searchBy%> </p><hr>
+    <table>
+        <tr>
+            <th>Keys</th>
+            <th>Clause</th>
+        </tr>
+        <% values.forEach(val =>{%>
+        <tr>
+            <td><%=val.key%></td>
+            <td><%=val.clause%></td>
+        </tr>
+        <%})%>
+    </table>
+ </body>
+</html>

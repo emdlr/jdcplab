@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/jdcpdata.css"/>
+    <title>All JDCP Data</title>
+</head>
+<body>
+    <p class="h1">SEARCH JDCP DATA</p><hr></br>
+    <center>
+        <table>
+            <tr>
+                <td>
+                    <input type="text" id="myKey" onkeyup="search('myKey')" placeholder="Search by Keys...">
+                </td>
+                <td>
+                    <input type="text" id="myClause" onkeyup="search('myClause')" placeholder="Search by Clause...">
+                </td>
+            </tr>
+        </table>
+        <table id="myTable">
+            <tr class="header">
+                <th class="header">Key</th>
+                <th class="header">Clause</th>
+            </tr>
+            <% allData.forEach((val)=>{
+                let keyPath=`/jdcp/key/${val.key}`;
+                let clausePath=`/jdcp/clause/${val.id}`;%>
+                <tr>
+                    <td><a href=<%=keyPath%> alt=<%=val.key%> > <%=val.key%></a></td>
+                    <td><a href=<%=clausePath%> alt=<%=val.id%> > <%=val.clause%></a></td>
+                </tr>
+            <%})%>
+        </table>
+    </center>
+    <script>
+        function search(searchBy) {
+        let input, filter, table, tr, td, i, txtValue;
+        let idx = searchBy==="myKey"?0:1;
+        input = document.getElementById(searchBy);
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[idx];
+            if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+            }       
+        }
+        }
+    </script>
+</body>
+</html>

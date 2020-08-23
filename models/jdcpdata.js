@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class jdcpdata extends Model {
+  class JDCPData extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,12 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  jdcpdata.init({
+  JDCPData.init({
     key: DataTypes.INTEGER,
-    clause: DataTypes.STRING
+    clause: DataTypes.STRING,
   }, {
     sequelize,
-    modelName: 'jdcpdata',
+    modelName: 'JDCPData',
+    timestamps: false
   });
-  return jdcpdata;
+  return JDCPData;
 };

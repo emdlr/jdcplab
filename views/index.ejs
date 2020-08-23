@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JDCP Dataload</title>
+</head>
+<body>
+    <h1>Welcome to JDCP Dataload</h1>
+    <label>Select a File to load:</label>
+    <form class="form" action="/jdcp" method="POST"> 
+        <table>
+            <tr>
+                <td colspan="2">
+                    <input type="file" onchange=getFileName() id="file" accept=".json" required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" onclick=getEverything() value="See All Data">
+                </td>
+                <td>
+                    <input type="submit" id="load" value="Load File">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <% if(displayMsg){ %>
+        <div>
+            <p><%=msg%></p>
+        </div>
+    <%}%>
+    <script>
+        function getFileName() {
+            let file = document.querySelector("#file").value;
+            file = file.toLowerCase();
+            file = file.substring(file.indexOf("h")+2,file.indexOf(".json"));
+            document.querySelector(".form").setAttribute("action",`/jdcp/fileload/${file}`);
+        }
+        function getEverything(){window.open("/jdcp/alldata","_self")};
+    </script>
+</body>
+</html>
