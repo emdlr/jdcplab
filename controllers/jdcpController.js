@@ -1,6 +1,7 @@
 const express = require ('express');
 const sequelize = require('sequelize');
 const fs = require('fs');
+const Datafile = require('../classes/Datafile');
 const router = express.Router();
 const fsRoot = "./files/";
 let displayMsg= false;
@@ -46,46 +47,15 @@ router.post("/fileload/:file",async(req,res)=>{
     fs.readFile(fsRoot+req.params.file+".json", async function (err, data) {
         if (err) throw err; 
         try {
-            let parsedData = JSON.parse(data);
-            let objsToValidate =[];
-            for(const prop in parsedData){
-                let objSet={
-                    key:Object.keys(parsedData[prop])[0],
-                    clause:Object.values(parsedData[prop])[0]
-                };
-                objsToValidate.push(objSet);
-            }
-            //DATA VALIDATION
-            let i=0;
-            let isDataOk=true;
-            while(i< objsToValidate.length){
-               let key= Number(objsToValidate[i].key);
-               let clause = objsToValidate[i].clause;
-               if(isNaN(key)||key===undefined||key===""||
-                  clause===undefined||clause===""){
-                   console.log(`Index: ${i}`);
-                   console.log(key);
-                   console.log(clause);
-                    isDataOk=false;
-                    break;
-               }
-               if(typeof clause === "string"||clause instanceof String){
-                    isDataOk=true;
-               } else {
-                    console.log(`Index: ${i}`); 
-                    console.log(clause);
-                    isDataOk=false;
-                    break;
-               }
-               i++;
-            }
-            if(!isDataOk){
+            let dataFile = new Datafile(data);//Creating an Instance of DataFile    
+            
+            if(!dataFile.validateFile()){
                 displayMsg=true;
                 msg="Load Failed, please verify Input Data - Retcode: 404";
                 res.status(404).redirect("/jdcp");
                 return;
             }
-            const newData = await JDCPData.bulkCreate(objsToValidate,{returning:true});
+            const newData = await JDCPData.bulkCreate(dataFile.validatedData,{returning:true});
             displayMsg=true;
             msg="Data Successfully Loaded - Retcode: 200";
             res.status(200).redirect("/jdcp");

@@ -96,7 +96,7 @@ hr{
   }
   a:hover{
     font-style: italic;
-    color:blue
+    color:blue;
   }
   @-webkit-keyframes fadein{
     from {opacity: 0;}
