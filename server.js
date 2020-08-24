@@ -9,7 +9,6 @@ app.use("/jdcp",require("./controllers/jdcpController.js"));
 app.get ("/", (req,res)=>{
     res.redirect("/jdcp");
 });
-
 //Starting up Server
 app.listen(3000,() => {
     console.log("JDCP Server Listening...");

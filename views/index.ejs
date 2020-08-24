@@ -3,33 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../img/jdLogo.png" rel="icon"/>
+    <link rel="stylesheet" href="/css/jdcpdata.css"/>
     <title>JDCP Dataload</title>
 </head>
 <body>
-    <h1>Welcome to JDCP Dataload</h1>
-    <label>Select a File to load:</label>
-    <form class="form" action="/jdcp" method="POST"> 
-        <table>
-            <tr>
-                <td colspan="2">
-                    <input type="file" onchange=getFileName() id="file" accept=".json" required>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="button" onclick=getEverything() value="See All Data">
-                </td>
-                <td>
-                    <input type="submit" id="load" value="Load File">
-                </td>
-            </tr>
-        </table>
-    </form>
-    <% if(displayMsg){ %>
-        <div>
-            <p><%=msg%></p>
-        </div>
-    <%}%>
+    <p class="h1">Welcome to JDCP Dataload</p><hr>
+    <form class="form" action="/jdcp" method="POST">
+    <div class="container"> 
+            <center>
+            <table class="idxTable">
+                <tr>
+                    <td>Select a File to load:</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input class="btnF" type="file" onchange=getFileName() id="file" accept=".json" required>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <input class="btn" type="button" onclick=getEverything() value="See All Data">
+                    </td>
+                    <td>
+                        <input class="btn" type="submit" id="load" value="Load File">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <% if(displayMsg){ %>
+            <div>
+                <p class="msg"><%=msg%></p>
+            </div>
+        <%}%>
+        </center>
+    </div>
     <script>
         function getFileName() {
             let file = document.querySelector("#file").value;

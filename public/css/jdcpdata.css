@@ -1,3 +1,6 @@
+body{
+  font-family: 'Oswald', sans-serif;
+}
 .header{
   width: 20vw;
 }
@@ -5,38 +8,101 @@ hr{
   width: 50vw;
 }
 .h1{
+  -webkit-text-stroke-width: 2px;
+  text-shadow: 0 0 10px yellow, 0 0 10px green;
+  -webkit-animation: fadein 2s;
+  -ms-animation: fadein 2s;
   text-align:center;
   font-size: 2vw;
 }
+.container{
+  background-image: url('/img/frame.png');
+  background-repeat: no-repeat;
+  height: 85vh;
+  background-size: 45vw 85vh;
+  background-position: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  
+}
 #myKey,
 #myClause {
-    background-image: url('/img/search.png'); /* Add a search icon to input */
-    background-position: 1vh 1vw; /* Position the search icon */
-    background-repeat: no-repeat; /* Do not repeat the icon image */
-    width: 20.5vw; /* Full-width */
-    font-size: 1vw; /* Increase font-size */
-    padding: 12px 20px 12px 40px; /* Add some padding */
-    border: 1px solid #ddd; /* Add a grey border */
-    margin-bottom: 12px; /* Add some space below the input */
+    background-image: url('/img/search.png'); 
+    background-position: 1vh 1vw; 
+    background-repeat: no-repeat; 
+    width: 20.5vw; 
+    font-size: 1vw; 
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px; 
   }
-  #myTable {
-    border-collapse: collapse; /* Collapse borders */
-    width: 50vw; /* Full-width */
-    border: 1px solid #ddd; /* Add a grey border */
-    font-size: 1vw; /* Increase font-size */
+  .tables{
+    border-collapse: collapse; 
+    width: 50vw; 
+    border: 1px solid #ddd; 
+    font-size: 1.5vw; 
   }
-  
-  #myTable th, #myTable td {
+  .idxTable {
+    width: 30vw;
+    font-size: 2vw;
+    margin-left: 5px;
+    color: white;
+    font-weight: 800;
+  }
+  .btn,.btnF{
+    background: green;
+    padding:1vw;
+    border: 3px solid;
+    border-color: white;
+    border-radius: 40px;
+    color: white;
+    font-weight: 800;
+  }
+  .btnF{
+    background: black;
+  }
+  .btn:hover{
+    background-color: rgb(93, 201, 93);
+  }
+  .btnF:hover{
+    background: grey;
+  }  
+  .tables th, .tables td {
     text-align: left; /* Left-align text */
     padding: 12px; /* Add padding */
   }
   
-  #myTable tr {
+  .tables tr {
     /* Add a bottom border to all table rows */
     border-bottom: 1px solid #ddd;
   }
   
-  #myTable tr.header, #myTable tr:hover {
-    /* Add a grey background color to the table header and on hover */
-    background-color: #f1f1f1;
+  .tables tr.header {
+    background-color: rgb(45, 145, 45);
+  }
+  .tables tr:hover{
+    background-color: rgb(238, 238, 153);
+  }
+  .msg{
+    font-size: 1.2vw;
+    font-style: italic;
+    font-weight: 800;
+  }
+  a{
+    text-decoration: none;
+    color:black;
+  }
+  a:hover{
+    font-style: italic;
+    color:blue
+  }
+  @-webkit-keyframes fadein{
+    from {opacity: 0;}
+    to   {opacity: 2;}
+  }
+  @-ms-keyframes fadein{
+    from {opacity: 0;}
+    to   {opacity: 2;}
   }

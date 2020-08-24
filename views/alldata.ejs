@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../img/jdLogo.png" rel="icon"/>
     <link rel="stylesheet" href="/css/jdcpdata.css"/>
     <title>All JDCP Data</title>
 </head>
@@ -19,7 +20,7 @@
                 </td>
             </tr>
         </table>
-        <table id="myTable">
+        <table class="tables">
             <tr class="header">
                 <th class="header">Key</th>
                 <th class="header">Clause</th>
@@ -40,7 +41,7 @@
         let idx = searchBy==="myKey"?0:1;
         input = document.getElementById(searchBy);
         filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
+        table = document.querySelector(".tables");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[idx];

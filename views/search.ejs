@@ -3,21 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../img/jdLogo.png" rel="icon"/>
+    <link rel="stylesheet" href="/css/jdcpdata.css"/>
     <title>JDCP Data Search</title>
 </head>
 <body>
     <p class="h1">RESULTS BY <%=searchBy%> </p><hr>
-    <table>
-        <tr>
-            <th>Keys</th>
-            <th>Clause</th>
-        </tr>
-        <% values.forEach(val =>{%>
-        <tr>
-            <td><%=val.key%></td>
-            <td><%=val.clause%></td>
-        </tr>
-        <%})%>
-    </table>
+    <center>
+        <table>
+            <tr>
+                <td>
+                    <input  type="text" id="myKey" onkeyup="search('myKey')" placeholder="Search by Keys...">
+                </td>
+                <td>
+                    <input type="text" id="myClause" onkeyup="search('myClause')" placeholder="Search by Clause...">
+                </td>
+            </tr>
+        </table>
+        <table class="tables">
+            <tr class="header">
+                <th class="header">Keys</th>
+                <th class="header">Clause</th>
+            </tr>
+            <% values.forEach(val =>{%>
+            <tr>
+                <td><%=val.key%></td>
+                <td><%=val.clause%></td>
+            </tr>
+            <%})%>
+        </table>
+    </center>
+    <script>
+        function search(searchBy) {
+        let input, filter, table, tr, td, i, txtValue;
+        let idx = searchBy==="myKey"?0:1;
+        input = document.getElementById(searchBy);
+        filter = input.value.toUpperCase();
+        table = document.querySelector(".tables");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[idx];
+            if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+            }       
+        }
+        }
+    </script>
  </body>
 </html>
