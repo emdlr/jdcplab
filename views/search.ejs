@@ -25,13 +25,24 @@
                 <th class="header">Keys</th>
                 <th class="header">Clause</th>
             </tr>
-            <% values.forEach(val =>{%>
-            <tr>
-                <td><%=val.key%></td>
-                <td><%=val.clause%></td>
-            </tr>
-            <%})%>
+            <% pager.getDataResult().forEach(val =>{
+                if(val.page == pager.currentPage){%>
+                    <tr>
+                        <td><%=val.key%></td>
+                        <td><%=val.clause%></td>
+                    </tr>
+            <%}})%>
         </table>
+        <!--Pagination List-->
+        <ul class='pager'>
+            <% let squares = pager.getSquares();
+                for(let i=0; i<squares.length;i++){
+                    let page=pager.getPagePath(`/jdcp/${searchBy.toLowerCase()}/${cId}`,squares,i);
+                    if(page){%>
+                      <li><a class=<%=squares[i]==pager.currentPage?"itemSelected":"item"%> href=<%=page%>><%= squares[i] %></a></li>
+                    <%}
+                }%>
+        </ul>
     </center>
     <script>
         function search(searchBy) {

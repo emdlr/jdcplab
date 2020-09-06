@@ -27,14 +27,15 @@
             </tr>
              <% pager.getDataResult().forEach((val,i)=>{
                  if(val.page == pager.currentPage){
-                    let keyPath=`/jdcp/key/${val.key}`;
-                    let clausePath=`/jdcp/clause/${val.id}`;%>
+                    let keyPath=`/jdcp/key/${val.key}?page=1`;
+                    let clausePath=`/jdcp/clause/${val.id}?page=1`;%>
                     <tr>
                         <td><a class ="iLink" href=<%=keyPath%> alt=<%=val.key%> > <%=val.key%></a></td>
                         <td><a class ="iLink" href=<%=clausePath%> alt=<%=val.id%> > <%=val.clause%></a></td>
                     </tr>
                 <%}})%>
         </table>
+        <!--Pagination List-->
         <ul class='pager'>
             <% let squares = pager.getSquares();
                 for(let i=0; i<squares.length;i++){

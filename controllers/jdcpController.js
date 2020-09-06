@@ -16,14 +16,16 @@ router.get("/", (req,res) =>{
 router.get("/key/:key",(req,res) =>{
     JDCPData.findAll({where:{key:req.params.key}}).then(keys =>{
         searchBy="KEY";
-        res.render("search.ejs",{values:keys,searchBy:searchBy});
+        let pager = new Pager(req.query.page,keys);
+        res.render("search.ejs",{pager,searchBy:searchBy,cId:req.params.key});
     })
 })
 router.get("/clause/:clauseid",(req,res) =>{
     JDCPData.findByPk(req.params.clauseid).then(cValue =>{
         JDCPData.findAll({where:{clause:cValue.clause}}).then(clauses =>{
             searchBy="CLAUSE";
-            res.render("search.ejs",{values:clauses,searchBy:searchBy});
+            let pager = new Pager(req.query.page,clauses);
+            res.render("search.ejs",{pager,searchBy:searchBy,cId:req.params.clauseid});
         })
     })
 })
