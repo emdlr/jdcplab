@@ -2,6 +2,7 @@ const express = require ('express');
 const sequelize = require('sequelize');
 const fs = require('fs');
 const Datafile = require('../classes/Datafile');
+const Pager = require('../classes/Pager');
 const router = express.Router();
 const fsRoot = "./files/";
 let displayMsg= false;
@@ -38,12 +39,12 @@ router.get("/alldata",(req,res) =>{
         }else{
             msg = "";
             displayMsg=false;
-            res.render("alldata.ejs",{allData:allData});
+            let pager = new Pager(req.query.page,allData);
+            res.render("alldata.ejs",{pager:pager});
         }
     })
 })
 router.post("/fileload/:file",async(req,res)=>{
-    console.log(req.params);
     fs.readFile(fsRoot+req.params.file+".json", async function (err, data) {
         if (err) throw err; 
         try {

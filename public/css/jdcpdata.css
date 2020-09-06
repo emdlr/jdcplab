@@ -8,6 +8,8 @@ hr{
   width: 50vw;
 }
 .h1{
+  text-decoration: none;
+  color:black;
   -webkit-text-stroke-width: 2px;
   text-shadow: 0 0 10px yellow, 0 0 10px green;
   -webkit-animation: fadein 2s;
@@ -70,12 +72,11 @@ hr{
     background: grey;
   }  
   .tables th, .tables td {
-    text-align: left; /* Left-align text */
-    padding: 12px; /* Add padding */
+    text-align: left;
+    padding: 12px;
   }
   
   .tables tr {
-    /* Add a bottom border to all table rows */
     border-bottom: 1px solid #ddd;
   }
   
@@ -90,14 +91,64 @@ hr{
     font-style: italic;
     font-weight: 800;
   }
-  a{
+  .iLink{
     text-decoration: none;
     color:black;
   }
-  a:hover{
+  .iLink:hover{
     font-style: italic;
     color:blue;
   }
+  .pager{
+    width: 40vw;
+    list-style-type: none;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .item {
+    text-decoration: none;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-right: 1vw;
+    padding-left: 1vw;
+    font-size:1.5vw;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    background-color:green;
+    border: 1px solid white;
+    border-radius: 15px;
+    box-shadow: 0 5px #999;
+    color: white;
+  }
+  .item:hover {
+    background-color: rgb(93, 201, 93)
+  }
+  .itemSelected{
+    text-decoration: none;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-right: 1vw;
+    padding-left: 1vw;
+    font-size:1.5vw;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    background-color:rgb(238, 238, 153);
+    border: 1px solid white;
+    border-radius: 15px;
+    box-shadow: 0 5px #999;
+    color: green;
+  }
+  
+  .item:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
   @-webkit-keyframes fadein{
     from {opacity: 0;}
     to   {opacity: 2;}
