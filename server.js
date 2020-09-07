@@ -10,6 +10,6 @@ app.get ("/", (req,res)=>{
     res.redirect("/jdcp");
 });
 //Starting up Server
-app.listen(3000,() => {
+app.listen(process.env.PORT,() => {
     console.log("JDCP Server Listening...");
 });
