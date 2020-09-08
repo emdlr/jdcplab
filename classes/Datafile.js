@@ -1,19 +1,24 @@
+const fs = require('fs');
+
 class Datafile {
-    constructor(dataObj){
-        this.dataObj = dataObj,
-        this.key="",
-        this.clause="",
-        this.validatedData=[]
+    constructor(path){
+        this.validatedData=[],
+        this.path=path,
+        this.decopule()
+    }
+    decopule(){
+        let data=[];
+        const arr2 = fs.readFileSync(this.path,{encoding:'utf8'}).trim().split('\n').map( function( line ) {
+            data.push({key:Object.keys(JSON.parse(line))[0],clause:Object.values(JSON.parse(line))[0]});
+            delete JSON.parse(line);
+        });
+        for (let i=0;i<data.length;i++){
+            this.validatedData.push(data[i]);
+        }
+        data=[];    
     }
     validateFile(){
         try {
-            let parsedData = JSON.parse(this.dataObj);
-            let objsToValidate =[];
-            for(const prop in parsedData){
-                this.key= Object.keys(parsedData[prop])[0],
-                this.clause= Object.values(parsedData[prop])[0]
-                this.validatedData.push({key:this.key,clause:this.clause});
-            };
             //DATA VALIDATION
             let i=0;
             let isDataOk=true;
@@ -22,17 +27,12 @@ class Datafile {
             let clause = this.validatedData[i].clause;
             if(isNaN(key)||key===undefined||key===""||
                 clause===undefined||clause===""){
-                console.log(`Index: ${i}`);
-                console.log(key);
-                console.log(clause);
                     isDataOk=false;
                     break;
             }
             if(typeof clause === "string"||clause instanceof String){
                     isDataOk=true;
             } else {
-                    console.log(`Index: ${i}`); 
-                    console.log(clause);
                     isDataOk=false;
                     break;
             }
@@ -40,8 +40,7 @@ class Datafile {
             }
             return isDataOk;
       }catch(exception) {
-        isDataOk=false;
-        return isDataOk;
+        return false;
       }
     }  
 }

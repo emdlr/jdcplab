@@ -47,11 +47,8 @@ router.get("/alldata",(req,res) =>{
     })
 })
 router.post("/fileload/:file",async(req,res)=>{
-    fs.readFile(fsRoot+req.params.file+".json", async function (err, data) {
-        if (err) throw err; 
-        try {
-            let dataFile = new Datafile(data);//Creating an Instance of DataFile    
-            
+    try {
+            let dataFile = new Datafile(fsRoot+req.params.file+".json");//Creating an Instance of DataFile    
             if(!dataFile.validateFile()){
                 displayMsg=true;
                 msg="Load Failed, please verify Input Data - Retcode: 404";
@@ -62,15 +59,13 @@ router.post("/fileload/:file",async(req,res)=>{
             displayMsg=true;
             msg="Data Successfully Loaded - Retcode: 200";
             res.status(200).redirect("/jdcp");
-
-          } catch(exception) {
+        } 
+    catch(exception) {
             console.log(exception)
             displayMsg=true;
             msg="Load Failed, please verify Input Data - Retcode: 404";
             res.status(404).redirect("/jdcp");
-          }
-                
-     });   
+        }  
 })
 
 module.exports = router;
